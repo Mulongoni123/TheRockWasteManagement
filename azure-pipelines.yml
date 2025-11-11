@@ -7,7 +7,7 @@ pool:
 
 variables:
   solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
+  buildPlatform: 'Any CPU' 
   buildConfiguration: 'Release'
 
 steps:
@@ -24,15 +24,13 @@ steps:
     projects: '**/*.csproj'
 
 - task: DotNetCoreCLI@2
-  displayName: 'Build solution'
+  displayName: 'Build'
   inputs:
     command: 'build'
-    arguments: '--no-restore --configuration $(buildConfiguration)'
-    projects: '**/*.csproj'
+    arguments: '--no-restore --configuration Release'
 
 - task: DotNetCoreCLI@2
-  displayName: 'Run tests'
+  displayName: 'Test'
   inputs:
     command: 'test'
-    arguments: '--no-build --configuration $(buildConfiguration)'
-    projects: '**/*.csproj'
+    arguments: '--no-build --verbosity normal'
